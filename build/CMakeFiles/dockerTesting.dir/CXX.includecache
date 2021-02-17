@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zdenkopavlik/work/dockerTesting/src/Animal.hpp
+string
+-
+
+/home/zdenkopavlik/work/dockerTesting/src/main.cpp
+iostream
+-
+Animal.hpp
+/home/zdenkopavlik/work/dockerTesting/src/Animal.hpp
+
