@@ -1,3 +1,0 @@
-/home/zdenkopavlik/work/dockerTesting/build/CMakeFiles/rebuild_cache.dir
-/home/zdenkopavlik/work/dockerTesting/build/CMakeFiles/edit_cache.dir
-/home/zdenkopavlik/work/dockerTesting/build/CMakeFiles/dockerTesting.dir
