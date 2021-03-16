@@ -1,0 +1,10 @@
+ git clone https://github.com/oktal/pistache.git
+ git submodule update --init
+ .
+ .
+ .
+ sudo make -j 6 install
+
+
+Start docker with port mapped to host machine
+docker run -d -p 12345:12345 03_image

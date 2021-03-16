@@ -1,0 +1,5 @@
+docker image ls 
+docker container ls
+docker ps
+docker ps -a
+docker image prune -> remove all containers without tag, containers with failed build, ...
