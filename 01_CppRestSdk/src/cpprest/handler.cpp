@@ -35,35 +35,7 @@ void handler::handle_get(http_request message)
 {
     ucout << message.to_string() << endl;
 
-    auto paths = http::uri::split_path(http::uri::decode(message.relative_uri().path()));
-
-    message.relative_uri().path();
-    //Dbms* d  = new Dbms();
-    //d->connect();
-
-    concurrency::streams::fstream::open_istream(U("static/index.html"), std::ios::in).then([=](concurrency::streams::istream is) {
-                                                                                         message.reply(status_codes::OK, is, U("text/html"))
-                                                                                             .then([](pplx::task<void> t) {
-                                                                                                 try
-                                                                                                 {
-                                                                                                     t.get();
-                                                                                                 }
-                                                                                                 catch (...)
-                                                                                                 {
-                                                                                                     //
-                                                                                                 }
-                                                                                             });
-                                                                                     })
-        .then([=](pplx::task<void> t) {
-            try
-            {
-                t.get();
-            }
-            catch (...)
-            {
-                message.reply(status_codes::InternalError, U("INTERNAL ERROR "));
-            }
-        });
+    message.reply(status_codes::OK, "Hello World to GET method");
 
     return;
 };
