@@ -1,6 +1,14 @@
-#include <iostream>
+#define UNUSED(expr) (void)(expr) //clang-tidy
 
-#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <sstream>
+#include <thread>
+#include <chrono>
+#include <ctime>
+#include <csignal>
+
 #include "cpprest/handler.h"
 
 using namespace std;
@@ -25,10 +33,11 @@ void on_initialize(const string_t &address)
     return;
 }
 
-void on_shutdown()
+void on_shutdown(int signal)
 {
     g_httpHandler->close().wait();
-    return;
+    std::cout << "Exiting with signal " << signal << std::endl;
+    std::_Exit(0);
 }
 
 #ifdef _WIN32
@@ -43,15 +52,16 @@ int main(int argc, char *argv[])
         port = argv[1];
     }
 
-    utility::string_t address = U("http://127.0.0.1:");
+    utility::string_t address = U("http://0.0.0.0:");
     address.append(port);
 
     on_initialize(address);
-    //std::cout << "Press ENTER to exit." << std::endl;
 
-    //std::string line;
-    //std::getline(std::cin, line);
+    std::signal(SIGTERM, on_shutdown);
+    std::signal(SIGKILL, on_shutdown);
+    while (true)
+    {
+    };
 
-    //on_shutdown();
     return 0;
 }

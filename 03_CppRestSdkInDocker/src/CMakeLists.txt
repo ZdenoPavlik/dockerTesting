@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-set(APPNAME "pistacheInDocker")
+set(APPNAME "cppRestSdkInDocker")
 
 project(${APPNAME}  LANGUAGES CXX)
 
@@ -28,20 +28,23 @@ find_package(Boost COMPONENTS system python filesystem REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
-#Pistache
-#http://pistache.io/docs/
-find_package(Pistache REQUIRED)
+#Cpp rest sdk
+#https://github.com/microsoft/cpprestsdk
+find_package(cpprestsdk REQUIRED)
 
 set (SOURCES
     main.cpp
+    cpprest/handler.cpp
 )
 
 set(HEADERS
+    stdafx.h
+    cpprest/handler.h
 )
 
 
 add_executable(${APPNAME} ${HEADERS} ${SOURCES} )
-target_link_libraries(${APPNAME} PRIVATE pistache_shared  ${GTest_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(${APPNAME} PRIVATE Threads::Threads -lcrypto cpprest  ${cpprestsdk_LIBRARIES}  ${GTest_LIBRARIES} ${Boost_LIBRARIES})
 
 
 #add_subdirectory(test)
