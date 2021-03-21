@@ -3,6 +3,7 @@
         "iostream": "cpp",
         "cstdlib": "cpp",
         "ostream": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "*.dat": "cpp"
     }
 }
