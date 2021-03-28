@@ -1,4 +1,7 @@
 #include "handler.h"
+#include "../FakeDb.hpp"
+
+FakeDb fakeDb;
 
 handler::handler()
 {
@@ -38,6 +41,8 @@ void handler::handle_get(http_request message)
     web::json::value response;
     response["message"] = json::value::string("Hello World to GET method");
     response["howMuch"] = json::value::number(42);
+
+    fakeDb.getAll();
 
     message.reply(status_codes::OK, response);
 

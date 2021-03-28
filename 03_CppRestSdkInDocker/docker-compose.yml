@@ -1,0 +1,7 @@
+version: "0.1"
+services:
+  restsrv:
+    build: .
+    ports:
+      - "34568:34568"
+

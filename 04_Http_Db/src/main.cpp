@@ -21,8 +21,6 @@ using namespace http::experimental::listener;
 
 std::unique_ptr<handler> g_httpHandler;
 
-FakeDb fakeDb;
-
 void on_initialize(const string_t &address)
 {
     web::uri_builder uri(address);
