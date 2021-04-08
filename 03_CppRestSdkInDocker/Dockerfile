@@ -2,7 +2,7 @@
 FROM ubuntu:20.04
 
 # Update apps on the base image
-RUN apt-get -y update && apt-get upgrade -y
+RUN apt-get -y update && apt-get upgrade -y && apt-get -y install apt-transport-https
 
 # Install the dependencies
 RUN apt-get -y install gcc-9 g++-9 tzdata
