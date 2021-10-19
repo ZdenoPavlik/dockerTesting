@@ -6,6 +6,7 @@ handler::handler()
 }
 handler::handler(utility::string_t url) : m_listener(url)
 {
+    std::cout << "Endpoints binded" << std::endl;
     m_listener.support(methods::GET, std::bind(&handler::handle_get, this, std::placeholders::_1));
     m_listener.support(methods::PUT, std::bind(&handler::handle_put, this, std::placeholders::_1));
     m_listener.support(methods::POST, std::bind(&handler::handle_post, this, std::placeholders::_1));
@@ -33,6 +34,7 @@ void handler::handle_error(pplx::task<void> &t)
 //
 void handler::handle_get(http_request message)
 {
+    std::cout << "GET request" << std::endl;
     ucout << message.to_string() << endl;
 
     message.reply(status_codes::OK, "Hello World to GET method");

@@ -3,3 +3,12 @@ docker container ls
 docker ps
 docker ps -a
 docker image prune -> remove all containers without tag, containers with failed build, ...
+
+
+https://docs.docker.com/engine/install/linux-postinstall/ -> add docker user to group
+
+
+!!!
+docker build -t restimage .
+docker image ls
+docker run -d -p 34568:34568 restimage

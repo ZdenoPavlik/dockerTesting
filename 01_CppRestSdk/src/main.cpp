@@ -37,7 +37,7 @@ int wmain(int argc, wchar_t *argv[])
 int main(int argc, char *argv[])
 #endif
 {
-    utility::string_t port = U("34568");
+    utility::string_t port = U("11369");
     if (argc == 2)
     {
         port = argv[1];
