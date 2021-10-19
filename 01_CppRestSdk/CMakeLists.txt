@@ -24,7 +24,7 @@ link_directories(${cpprestsdk_LIBRARY_DIRS})
 
 
 # Boost
-find_package(Boost COMPONENTS system python filesystem REQUIRED)
+find_package(Boost COMPONENTS system filesystem REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
