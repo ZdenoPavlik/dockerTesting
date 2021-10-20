@@ -24,7 +24,7 @@ link_directories(${GTest_LIBRARY_DIRS})
 
 
 # Boost
-find_package(Boost COMPONENTS system python filesystem REQUIRED)
+find_package(Boost COMPONENTS system filesystem REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
@@ -35,11 +35,15 @@ find_package(cpprestsdk REQUIRED)
 set (SOURCES
     main.cpp
     cpprest/handler.cpp
+    Student.cpp
+    FakeDb.cpp
 )
 
 set(HEADERS
     stdafx.h
     cpprest/handler.h
+    Student.hpp
+    FakeDb.hpp
 )
 
 

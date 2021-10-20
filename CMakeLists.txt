@@ -1,51 +1,13 @@
 cmake_minimum_required(VERSION 3.5)
-set(APPNAME "dockerTesting")
+project("LinuxPlayground"  LANGUAGES CXX)
 
-project(${APPNAME}  LANGUAGES CXX)
-
-# Threads
-find_package(Threads REQUIRED)
-include_directories(${Threads_INCLUDE_DIRS})
-link_directories(${Threads_LIBRARY_DIRS})
-
-# GTest
-find_package(GTest REQUIRED)
-include_directories(${GTest_INCLUDE_DIRS})
-link_directories(${GTest_LIBRARY_DIRS})
+#cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug ..
 
 
-#sudo apt-get install cmake libgtest-dev
-#cd /usr/src/gtest
-#sudo cmake CMakeLists.txt
-#sudo make
- 
-# copy or symlink libgtest.a and libgtest_main.a to your /usr/lib folder
-#sudo cp *.a /usr/lib
+add_subdirectory(05_OnlineTalksDemo)
 
 
-# Boost
-find_package(Boost COMPONENTS system python filesystem REQUIRED)
-include_directories(${Boost_INCLUDE_DIRS})
-link_directories(${Boost_LIBRARY_DIRS})
-
-#CppRestSdk
-#https://github.com/microsoft/cpprestsdk/wiki/How-to-build-for-Linux
-find_package(cpprestsdk REQUIRED)
-include_directories(${cpprestsdk_INCLUDE_DIRS})
-link_directories(${cpprestsdk_LIBRARY_DIRS})
-
-set (SOURCES
-    src/main.cpp
-    src/Animal.cpp
-)
-
-set(HEADERS
-    src/Animal.hpp
-)
 
 
-add_executable(${APPNAME} ${HEADERS} ${SOURCES} )
-target_link_libraries(${APPNAME} PRIVATE cpprestsdk::cpprest  ${GTest_LIBRARIES} ${Boost_LIBRARIES})
 
 
-#add_subdirectory(test)

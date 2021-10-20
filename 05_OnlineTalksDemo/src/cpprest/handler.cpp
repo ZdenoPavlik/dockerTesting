@@ -6,10 +6,6 @@ FakeDB fakeDb;
 
 int getIdFromUrl(const std::string& path);
 
-handler::handler()
-{
-    // ctor
-}
 handler::handler(utility::string_t url)
     : m_listener(url)
 {
@@ -17,10 +13,6 @@ handler::handler(utility::string_t url)
     m_listener.support(methods::PUT, std::bind(&handler::handle_put, this, std::placeholders::_1));
     m_listener.support(methods::POST, std::bind(&handler::handle_post, this, std::placeholders::_1));
     m_listener.support(methods::DEL, std::bind(&handler::handle_delete, this, std::placeholders::_1));
-}
-handler::~handler()
-{
-    // dtor
 }
 
 void handler::handle_error(pplx::task<void>& t)
@@ -32,12 +24,19 @@ void handler::handle_error(pplx::task<void>& t)
     }
 }
 
+//
+// GET Request
+//
 void handler::handle_get(http_request message)
 {
     std::cout << message.to_string() << endl;
 
     web::json::value responseArray;
-    fakeDb.getStudentCount();
+    const int count = fakeDb.getStudentCount();
+    if (count == 0) {
+        message.reply(status_codes::NoContent, web::json::value::array()); //Return empty array
+        return;
+    }
 
     for (int i = 0; i < fakeDb.getStudentCount(); i++) {
         web::json::value test = fakeDb.getStudentById(i).toJson();
@@ -50,6 +49,9 @@ void handler::handle_get(http_request message)
     return;
 };
 
+//
+// A POST request
+//
 void handler::handle_post(http_request message)
 {
     ucout << message.to_string() << endl;
@@ -67,6 +69,9 @@ void handler::handle_post(http_request message)
     return;
 };
 
+//
+// A DELETE request
+//
 void handler::handle_delete(http_request message)
 {
     try { // HEADS UP -> example of general error handling
@@ -85,6 +90,9 @@ void handler::handle_delete(http_request message)
     return;
 };
 
+//
+// A PUT request
+//
 void handler::handle_put(http_request message)
 {
     ucout << message.to_string() << endl;
@@ -108,7 +116,7 @@ int getIdFromUrl(const std::string& path)
     const std::string key = "/api/students/";
     auto tempString = path.substr(path.find(key) + key.length(), path.length() - key.length());
     int id = stoi(tempString);
-    std::cout << "Parsed ID " << id << std::endl;
 
+    std::cout << "Parsed ID " << id << std::endl;
     return id;
 }

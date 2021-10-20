@@ -12,3 +12,5 @@ https://docs.docker.com/engine/install/linux-postinstall/ -> add docker user to 
 docker build -t restimage .
 docker image ls
 docker run -d -p 34568:34568 restimage
+
+docker stop $(docker ps -q --filter ancestor=restimage)

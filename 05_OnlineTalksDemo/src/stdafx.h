@@ -16,5 +16,7 @@
 #include "cpprest/json.h"
 #include "cpprest/producerconsumerstream.h"
 #include "cpprest/uri.h"
+#include <cpprest/filestream.h>
+#include <cpprest/http_client.h>
 
 #endif // STDAFX_H_INCLUDED

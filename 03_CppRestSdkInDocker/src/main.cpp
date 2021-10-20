@@ -1,13 +1,13 @@
 #define UNUSED(expr) (void)(expr) //clang-tidy
 
-#include <iostream>
-#include <string>
-#include <iomanip>
-#include <sstream>
-#include <thread>
 #include <chrono>
-#include <ctime>
 #include <csignal>
+#include <ctime>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <thread>
 
 #include "cpprest/handler.h"
 
@@ -19,7 +19,7 @@ using namespace http::experimental::listener;
 
 std::unique_ptr<handler> g_httpHandler;
 
-void on_initialize(const string_t &address)
+void on_initialize(const string_t& address)
 {
 
     web::uri_builder uri(address);
@@ -28,6 +28,7 @@ void on_initialize(const string_t &address)
     g_httpHandler = std::unique_ptr<handler>(new handler(addr));
     g_httpHandler->open().wait();
 
+    ucout << "Example: GET request to 127.0.0.1:34569" << std::endl;
     ucout << utility::string_t(U("Listening for requests at: ")) << addr << std::endl;
 
     return;
@@ -40,15 +41,10 @@ void on_shutdown(int signal)
     std::_Exit(0);
 }
 
-#ifdef _WIN32
-int wmain(int argc, wchar_t *argv[])
-#else
-int main(int argc, char *argv[])
-#endif
+int main(int argc, char* argv[])
 {
-    utility::string_t port = U("34568");
-    if (argc == 2)
-    {
+    utility::string_t port = U("34569");
+    if (argc == 2) {
         port = argv[1];
     }
 
@@ -59,8 +55,7 @@ int main(int argc, char *argv[])
 
     std::signal(SIGTERM, on_shutdown);
     std::signal(SIGKILL, on_shutdown);
-    while (true)
-    {
+    while (true) {
     };
 
     return 0;
