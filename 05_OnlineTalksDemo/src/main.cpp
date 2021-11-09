@@ -36,6 +36,8 @@ void client_request_demo(
               return client_dummy.request(method);
           });
 
+    std::cout << "DOING SOME WORK ..." << std::endl;
+
     task.then([](http_response response) {
             std::cout << std::endl
                       << "--------------------------------------------" << std::endl;
@@ -48,7 +50,7 @@ void client_request_demo(
         })
         .wait();
 
-    std::cout << "HTTP request done " << std::endl;
+    std::cout << "HTTP REQUEST DONE " << std::endl;
 
     return;
 }
@@ -77,6 +79,7 @@ void on_shutdown(int signal)
 
 int main(int argc, char* argv[])
 {
+    //Uncomment this to make client request
     client_request_demo();
     return 0;
 
